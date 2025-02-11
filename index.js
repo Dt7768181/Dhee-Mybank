@@ -65,7 +65,7 @@ function home() {
          <p><input type="number" id="amount" placeholder="Enter Amount"></p>
          <button onclick='saveData()'>Submit</button>
          <p><b>Current Balance: <span id='spBalance'>${user.balance}</span></b></p>
-
+         <button onclick="showUsers();">Show Users</button>
       `;
   root.innerHTML = str;
 }
@@ -83,6 +83,7 @@ function addUser() {
   };
   users.push(user);
   showLogin();
+  // showUsers();
 }
 function chkUser() {
   let email = document.getElementById("email").value;
@@ -109,6 +110,7 @@ function showForm() {
   <p><input type="date" id="dob"></p>
   <p><button onclick='addUser()'>Submit</button></p>
   <p>Already a member?<button onclick='showLogin()'>Login Here</button></p>
+  
   `;
   root.innerHTML = str;
 }
@@ -125,5 +127,19 @@ function showLogin() {
   `;
   root.innerHTML = str;
 }
-
+function showUsers() {
+  let length = users.length;
+  let str = "";
+  for (let i = 0; i < length; i++) {
+    str += `<div>
+              ${users[i].name}-
+              ${users[i].email}-
+              ${users[i].dob}
+              </div>`;
+  }
+  str+=`<div>
+          <button onclick="home()">Back</button>
+        </div>`
+  root.innerHTML = str;
+}
 showLogin();
